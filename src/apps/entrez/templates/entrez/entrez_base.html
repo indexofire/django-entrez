@@ -1,0 +1,29 @@
+{% extends "site_base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  {% block sidebar %}
+  <div class="span3">
+    <h3>{% trans "Term List" %}</h3>
+    <ul class="nav nav-list">
+    {% for term in terms %}
+      <li style="border-bottom: 1px dotted #CCC">
+        <a class="pop-term" data-toggle="tooltip" data-placement="top" data-original-title="{{ term.db }}" href="{{ term.get_absolute_url }}">{{ term.name }}</a>
+      </li>
+    {% empty %}
+      {% trans "no term yet" %}
+    {% endfor %}
+    </ul>
+  </div>
+  {% endblock sidebar %}
+
+  {% block entrez-content %}{% endblock entrez-content %}
+</div>
+
+<script>
+$(document).ready(function(){
+  $('.pop-term').tooltip('hide');
+});
+</script>
+{% endblock content %}

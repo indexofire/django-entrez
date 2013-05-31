@@ -1,0 +1,13 @@
+{% extends "site_base.html" %}
+
+{% block content %}
+<div class="hero-unit">
+  <h1>Welcome!</h1>
+  <p></p>
+  <p>This is django-entrez demo site. You can add custom entrez search term to follow the latest ncbi update.</p>
+  <p>
+    <a href="{% url 'entrez-index' %}" class="btn btn-primary btn-large">Try It!</a>
+    <a href="#" class="btn btn-primary btn-large">Learn to use</a>
+  </p>
+</div>
+{% endblock content %}
