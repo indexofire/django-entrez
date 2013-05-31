@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 import os
-import json
+import sys
 import djcelery
-from django.core.exceptions import ImproperlyConfigured
+
 
 djcelery.setup_loader()
 
-DEBUG = os.environ['DEBUG']
-TEMPLATE_DEBUG = DEBUG
-DATABASES = os.environ['DATABASE_URL']
+PROJECT_ROOT = os.path.abspath(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
-
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-ADMINS = ()
+ADMINS = (
+    ('Admin', 'admin@local.com'),
+)
 MANAGERS = ADMINS
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Chicago'
 
-ROOT_URLCONF = 'server.urls'
-WSGI_APPLICATION = 'server.wsgi.application'
+ROOT_URLCONF = 'main.urls'
+WSGI_APPLICATION = 'main.wsgi.application'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
@@ -28,7 +27,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'assets/'),
+    os.path.join(PROJECT_ROOT, 'server/assets/'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -41,7 +40,7 @@ LOCALE_PATHS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'templates/'),
+    os.path.join(PROJECT_ROOT, 'server/templates/'),
 )
 
 TEMPLATE_LOADERS = (
@@ -61,10 +60,10 @@ INSTALLED_APPS = (
     'entrez',
     'south',
     'djcelery',
-    'userena',
-    'guardian',
-    'easy_thumbnails',
-    'account',
+    #'userena',
+    #'guardian',
+    #'easy_thumbnails',
+    #'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,43 +86,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
 )
-
-if DEBUG:
-    INSTALLED_APPS += (
-        'debug_toolbar',
-    )
-    MIDDLEWARE_CLASSES += (
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    )
-    INTERNAL_IPS = (
-        '127.0.0.1',
-    )
-    DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-    }
-    SECRET_KEY = '007'
-    BROKER_URL = 'redis://localhost:6379/0'
-else:
-    SECRET_KEY = os.environ['SECRET_KEY']
-    BROKER_URL = 'redis://localhost:6379/0'
-
-AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-ANONYMOUS_USER_ID = -1
-AUTH_PROFILE_MODULE = 'account.UserProfile'
-LOGIN_REDIRECT_URL = '/account/%(username)s/'
-LOGIN_URL = '/account/signin/'
-LOGOUT_URL = '/account/signout/'
-
-USERENA_MUGSHOT_GRAVATAR = True
-USERENA_SIGNIN_REDIRECT_URL = '/account/%(username)s/'
-
-if DEBUG:
-    USERENA_ACTIVATION_REQUIRED = False
 
 LOGGING = {
     'version': 1,
