@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-#from django.conf import settings
+from django.conf import settings
 from django.contrib import admin
-#from django.views.generic.base import RedirectView
+from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
 from django.conf.urls import patterns, include, url
 #from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -9,12 +10,15 @@ from django.conf.urls import patterns, include, url
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    #url(r'^favicon\.ico/$', RedirectView.as_view(url='%s/img/favicon.ico' % settings.STATIC_URL), name='icon'),
+    url(r'^$', TemplateView.as_view(template_name="index.html")),
+    url(r'^favicon\.ico/$', RedirectView.as_view(url='%simg/favicon.ico' % settings.STATIC_URL)),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^entrez/', include('entrez.urls')),
+    url(r'^account/', include('userena.urls'), name='account'),
 )
 
 #urlpatterns += staticfiles_urlpatterns()
-"""
+
 urlpatterns += patterns('',
     url(r'^%s/(?P<path>.*)$' % settings.MEDIA_URL.strip('/'),
         'django.views.static.serve', {'document_root': settings.MEDIA_ROOT},
@@ -23,4 +27,3 @@ urlpatterns += patterns('',
         'django.views.static.serve', {'document_root': settings.STATIC_ROOT},
     ),
 )
-"""

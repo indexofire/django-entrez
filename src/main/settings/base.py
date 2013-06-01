@@ -27,7 +27,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'server/assets/'),
+    os.path.join(PROJECT_ROOT, 'main/assets/'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -40,7 +40,7 @@ LOCALE_PATHS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'server/templates/'),
+    os.path.join(PROJECT_ROOT, 'main/templates/'),
 )
 
 TEMPLATE_LOADERS = (
@@ -60,10 +60,10 @@ INSTALLED_APPS = (
     'entrez',
     'south',
     'djcelery',
-    #'userena',
-    #'guardian',
-    #'easy_thumbnails',
-    #'account',
+    'userena',
+    'guardian',
+    'easy_thumbnails',
+    'account',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -110,5 +110,10 @@ LOGGING = {
         },
     }
 }
+
+ANONYMOUS_USER_ID = -1
+AUTH_PROFILE_MODULE = 'account.UserProfile'
+USERENA_MUGSHOT_GRAVATAR = True
+USERENA_SIGNIN_REDIRECT_URL = '/account/%(username)s/'
 
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
