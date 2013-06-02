@@ -16,8 +16,8 @@ MANAGERS = ADMINS
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Chicago'
 
-ROOT_URLCONF = 'main.urls'
-WSGI_APPLICATION = 'main.wsgi.application'
+ROOT_URLCONF = 'server.urls'
+WSGI_APPLICATION = 'server.wsgi.application'
 SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
@@ -27,7 +27,7 @@ MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'main/assets/'),
+    os.path.join(PROJECT_ROOT, 'server/assets/'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -40,7 +40,7 @@ LOCALE_PATHS = (
 )
 
 TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, 'main/templates/'),
+    os.path.join(PROJECT_ROOT, 'server/templates/'),
 )
 
 TEMPLATE_LOADERS = (
@@ -117,3 +117,12 @@ USERENA_MUGSHOT_GRAVATAR = True
 USERENA_SIGNIN_REDIRECT_URL = '/account/%(username)s/'
 
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)

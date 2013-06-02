@@ -1,5 +1,11 @@
 django==1.5.1
+pillow
 south
 psycopg2
 django-celery
 django-social-auth
+django-debug-toolbar
+django-disqus
+django-userena
+easy-thumbnails
+celery-with-redis

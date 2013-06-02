@@ -47,17 +47,17 @@ def term_list(request, slug):
 
 @csrf_exempt
 def add_term(request):
-    #tp = 'entrez/entrez_add_term.html'
     form_class = AddTermForm
     if request.method == 'POST':
         form = form_class(request.POST)
         if form.is_valid():
             term = EntrezTerm.objects.create(
-                title=form.cleaned_data["title"],
+                name=form.cleaned_data["name"],
+                slug=form.cleaned_data["slug"],
                 db=form.cleaned_data["db"],
-                search_period=form.cleaned_data["period"],
+                period=form.cleaned_data["period"],
                 owner=request.user,
-                condition=form.cleaned_data["term"],
+                term=form.cleaned_data["term"],
                 creation_date=get_current_date(),
                 lastedit_date=get_current_date(),
             )

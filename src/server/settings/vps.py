@@ -27,13 +27,6 @@ INSTALLED_APPS += (
     'disqus',
 )
 
-AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
-    'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.google.GoogleBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
 LOGIN_REDIRECT_URL = '/account/%(username)s/'
 LOGIN_URL = '/account/login/'
 LOGOUT_URL = '/account/logout/'

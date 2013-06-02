@@ -29,15 +29,15 @@
       <div class="nav-collapse collapse" id="main-menu">
         <ul class="nav" id="main-menu-left">
           <li class="dropdown">
-            <a class="dropdown-toggle" href="#" data-toggle="dropdown">Entrez</a>
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">{% trans "Entrez" %}</a>
             <ul class="dropdown-menu">
-              <li><a href="{% url 'entrez-index' %}">check your entrez list</a></li>
-              <li><a href="#myModal" role="button" data-toggle="modal">add term</a></li>
+              <li><a href="{% url 'entrez-index' %}">{% trans "Entrez Term List" %}</a></li>
+              <li><a href="#myModal" role="button" data-toggle="modal">{% trans "Add Entrez Term" %}</a></li>
             </ul>
           </li>
-          <li><a href="{% url 'userena_profile_list' %}">Users</a></li>
-          <li><a href="#">Docs</a></li>
-          <!--<li><a href="/group/">Group</a></li>-->
+          <li><a href="{% url 'userena_profile_list' %}">{% trans "Users" %}</a></li>
+          <li><a href="#">{% trans "Docs" %}</a></li>
+          <li><a href="">{% trans "Room" %}</a></li>
         </ul>
         <ul class="nav pull-right" id="main-menu-right">
         {% if request.user.is_authenticated %}
