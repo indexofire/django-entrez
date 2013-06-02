@@ -64,6 +64,7 @@ INSTALLED_APPS = (
     'guardian',
     'easy_thumbnails',
     'account',
+    'social_auth',
 )
 
 MIDDLEWARE_CLASSES = (

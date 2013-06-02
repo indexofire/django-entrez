@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^entrez/', include('entrez.urls')),
     url(r'^account/', include('userena.urls'), name='account'),
+    url(r'', include('social_auth.urls')),
 )
 
 #urlpatterns += staticfiles_urlpatterns()
