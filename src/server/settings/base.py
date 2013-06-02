@@ -86,6 +86,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
+    "social_auth.context_processors.social_auth_by_name_backends",
+    "social_auth.context_processors.social_auth_backends",
+    "social_auth.context_processors.social_auth_by_type_backends",
+    "social_auth.context_processors.social_auth_login_redirect",
 )
 
 LOGGING = {
@@ -120,10 +124,10 @@ USERENA_SIGNIN_REDIRECT_URL = '/account/%(username)s/'
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 AUTHENTICATION_BACKENDS = (
-    'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleBackend',
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
