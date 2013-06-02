@@ -9,3 +9,4 @@ django-disqus
 django-userena
 easy-thumbnails
 celery-with-redis
+gunicorn

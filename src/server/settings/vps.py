@@ -10,6 +10,9 @@ BROKER_URL = os.environ['BROKER_URL']
 DISQUS_API_KEY = os.environ['DISQUS_API_KEY']
 DISQUS_WEBSITE_SHORTNAME = os.environ['DISQUS_WEBSITE_SHORTNAME']
 
+ALLOWED_HOSTS = [
+    '.django-entrez.com',
+]
 
 DATABASES = {
     'default': {
@@ -24,6 +27,7 @@ DATABASES = {
 
 
 INSTALLED_APPS += (
+    'gunicorn',
     'disqus',
 )
 
