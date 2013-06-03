@@ -206,4 +206,4 @@ class EntrezEntry(models.Model):
 
     @property
     def get_db_badge(self):
-        return "<span class=\"badge\">%s</span>" % self.db
+        return mark_safe("<span class=\"badge\">%s</span>" % self.db)

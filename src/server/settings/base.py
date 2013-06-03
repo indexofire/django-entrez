@@ -65,6 +65,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'account',
     'social_auth',
+    'endless_pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -86,10 +87,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    "social_auth.context_processors.social_auth_by_name_backends",
-    "social_auth.context_processors.social_auth_backends",
-    "social_auth.context_processors.social_auth_by_type_backends",
-    "social_auth.context_processors.social_auth_login_redirect",
+    #"social_auth.context_processors.social_auth_by_name_backends",
+    #"social_auth.context_processors.social_auth_backends",
+    #"social_auth.context_processors.social_auth_by_type_backends",
+    #"social_auth.context_processors.social_auth_login_redirect",
 )
 
 LOGGING = {

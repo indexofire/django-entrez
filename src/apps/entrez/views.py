@@ -38,9 +38,10 @@ def term_list(request, slug):
     terms = EntrezTerm.objects.filter(owner=request.user).select_related()
     form = AddTermForm()
     ct = {
-        "objects": objects[:30],
+        "objects": objects,
         "terms": terms,
         "form": form,
+        "current_term": term,
     }
     return render_to_response(tp, ct, context_instance=RequestContext(request))
 
