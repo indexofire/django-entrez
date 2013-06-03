@@ -3,7 +3,7 @@ from celery import task
 from entrez.utils import get_current_date, fetch_queryset
 from entrez.models import EntrezTerm
 
-
+'''
 @task()
 def fetch_entry(**kwargs):
     """
@@ -13,7 +13,7 @@ def fetch_entry(**kwargs):
 
     if queryset:
         fetch_queryset(queryset)
-
+'''
 
 @task()
 def entrez_task(**kwargs):

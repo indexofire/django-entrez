@@ -91,6 +91,11 @@ class EntrezTerm(models.Model):
             fetch_options = self.fetch_options()
             spliter = '\n'
             func = self.epigenomics
+        else:
+            search_options = self.search_options()
+            fetch_options = self.fetch_options()
+            spliter = '\n'
+            func = self.pubmed
 
         return search_options, fetch_options, func, spliter
 

@@ -14,7 +14,7 @@
       <div id="{{ obj.pk }}" class="accordion-body collapse">
         <div class="accordion-inner">
           <div class="entry-content">{{ obj.content|linebreaks|cut:"<br />" }}</div>
-          <div class="toolbar"><a href="http://http://www.ncbi.nlm.nih.gov/{{ obj.db }}/{{ obj.eid }}/" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a></div>
+          <div class="toolbar"><a href="http://www.ncbi.nlm.nih.gov/{{ obj.db }}/{{ obj.eid }}/" class="btn btn-primary pull-right" target="blank">{% trans "Original Link" %}</a></div>
         </div>
       </div>
     </div>
