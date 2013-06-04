@@ -183,12 +183,13 @@ class EntrezEntry(models.Model):
     """
     Entrez's entry stored in django database
     """
-    eid = models.CharField(default='', max_length=20)
-    db = models.CharField(choices=ENTREZ_DATABASE_CHOICES, max_length=30)
+    eid = models.CharField(max_length=20, blank=False, null=False)
+    db = models.CharField(choices=ENTREZ_DATABASE_CHOICES, max_length=30, blank=False, null=False)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='entry_owner')
     term = models.ForeignKey(EntrezTerm, related_name='entry_term')
-    content = models.TextField(default='', blank=True)
-    title = models.CharField(max_length=512)
+    content = models.TextField()
+    content_html = models.TextField()
+    title = models.CharField(max_length=512, blank=False, null=False)
     magzine = models.CharField(blank=True, max_length=512, help_text=_('If entry is a pubmed item'))
     authors = models.CharField(blank=True, max_length=512, help_text=_('If entry has authors'))
     abstract = models.TextField(blank=True, help_text=_('If entry is a pubmed item'))
@@ -207,3 +208,11 @@ class EntrezEntry(models.Model):
     @property
     def get_db_badge(self):
         return mark_safe("<span class=\"badge\">%s</span>" % self.db)
+
+    @property
+    def real_url(self):
+        return mark_safe("http://www.ncbi.nlm.nih.gov/%s/%s/" % (self.db, self.eid))
+
+    def save(self):
+        self.content_html = self.content.replace('\n', '<br>')
+        super(EntrezEntry, self).save()

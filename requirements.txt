@@ -10,3 +10,4 @@ django-userena
 easy-thumbnails
 celery-with-redis
 gunicorn
+django-endless-pagination
