@@ -6,8 +6,8 @@
   {% block sidebar %}
   <div class="span3">
   <div style="margin-bottom:10px">
-    <a class="btn btn-success" href="#AddTermModal" role="button" data-toggle="modal">{% trans "Add Term" %}</a>
-    <a class="btn btn-danger">{% trans "Remove Term" %}</a>
+    <a class="btn btn-danger" href="#AddTermModal" role="button" data-toggle="modal">{% trans "Add Term" %}</a>
+    <a class="btn btn-inverse">{% trans "Remove Term" %}</a>
   </div>
   <div class="bs-docs-sidebar">
     <ul class="nav nav-list bs-docs-sidenav">
@@ -42,6 +42,11 @@
       </form>
     </div>
   </div>
+
+<form class="form-search">
+  <input type="text" class="input-medium search-query">
+  <button type="submit" class="btn">{% trans "Search" %}</button>
+</form>
 
 {% if current_term %}
     <div>

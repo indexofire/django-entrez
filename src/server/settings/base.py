@@ -133,3 +133,7 @@ AUTHENTICATION_BACKENDS = (
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+LOGIN_URL = '/account/signin/'
+LOGOUT_URL = '/account/signout/'
+LOGIN_REDIRECT_URL = '/account/%(username)s/'

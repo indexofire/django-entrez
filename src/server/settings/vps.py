@@ -31,15 +31,6 @@ INSTALLED_APPS += (
     'disqus',
 )
 
-LOGIN_REDIRECT_URL = '/account/%(username)s/'
-#LOGIN_URL = '/account/login/'
-#LOGOUT_URL = '/account/logout/'
-
-LOGIN_URL = '/signin/'
-LOGIN_REDIRECT_URL = '/'
-LOGIN_ERROR_URL = '/login-error/'
-LOGOUT_URL = '/logout/'
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ['EMAIL_ADDRESS']
