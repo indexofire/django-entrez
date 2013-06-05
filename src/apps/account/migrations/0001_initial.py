@@ -15,7 +15,7 @@ class Migration(SchemaMigration):
             ('privacy', self.gf('django.db.models.fields.CharField')(default='registered', max_length=15)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(related_name='user_profile', unique=True, to=orm['auth.User'])),
             ('nickname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('gender', self.gf('django.db.models.fields.CharField')(max_length=1)),
+            ('gender', self.gf('django.db.models.fields.PositiveSmallIntegerField')(default=3)),
             ('job', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
         ))
         db.send_create_signal(u'account', ['UserProfile'])
@@ -29,7 +29,7 @@ class Migration(SchemaMigration):
     models = {
         u'account.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'gender': ('django.db.models.fields.CharField', [], {'max_length': '1'}),
+            'gender': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '3'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'job': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'mugshot': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
