@@ -22,9 +22,10 @@ class UserProfile(UserenaBaseProfile):
         blank=True,
         null=False,
     )
-    gender = models.CharField(
+    gender = models.PositiveSmallIntegerField(
         choices=GENDER,
         max_length=1,
+        default=3,
     )
     job = models.CharField(
         max_length=255,
@@ -36,7 +37,6 @@ class UserProfile(UserenaBaseProfile):
         return self.user.username
 
     def save(self):
+        super(UserProfile, self).save()
         if self.nickname is None:
             self.nickname = self.user.username
-        super(UserProfile, self).save()
-

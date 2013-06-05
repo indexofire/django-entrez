@@ -75,3 +75,13 @@ def mark_as_read(request):
         entry.save()
 
     return HttpResponse()
+
+
+@csrf_exempt
+def mark_as_unread(request):
+    if request.method == "POST":
+        entry = get_object_or_404(EntrezEntry, pk=request.POST.get('feed_item_id'))
+        entry.read = False
+        entry.save()
+
+    return HttpResponse()

@@ -5,6 +5,7 @@
 .bs-docs-sidenav {
   padding: 0;
   background-color: #fff;
+  margin-bottom: 20px;
 }
 .bs-docs-sidenav > li > a {
   display: block;
@@ -20,7 +21,7 @@
   position: relative;
   z-index: 2;
   padding: 8px 14px 8px 12px !important;
-  text-shadow: 0 1px 0 rgba(0,0,0,.15);
+  /* text-shadow: 0 1px 0 rgba(0,0,0,.15); */
   border-left: 0 !important;
 }
 /* Chevrons */
@@ -39,14 +40,6 @@
 .bs-docs-sidenav .active .icon-chevron-right,
 .bs-docs-sidenav .active a:hover .icon-chevron-right {
   background-image: url(../img/glyphicons-halflings.png) !important;
-}
-.bs-docs-sidenav.affix {
-  top: 40px;
-}
-.bs-docs-sidenav.affix-bottom {
-  position: absolute;
-  top: auto;
-  bottom: 270px;
 }
 
 .entry-accordion {
@@ -120,4 +113,25 @@
 
 .unread {
   font-weight: bold;
+}
+
+.modal-title {
+  margin: 0 0 20px 0;
+  background: #F5F5F5;
+  border-bottom: 1px solid #EEE;
+}
+.modal-title h3#myModalLabel {
+  margin: 0;
+  padding-left: 20px;
+}
+#AddTermModal .form-horizontal {
+  margin: 0;
+}
+#AddTermModal .control-group {
+  margin: 0;
+}
+#AddTermModal .form-actions {
+  margin: 0;
+  background: #FFF;
+  border-top: 0;
 }
