@@ -24,7 +24,6 @@ class UserProfile(UserenaBaseProfile):
     )
     gender = models.PositiveSmallIntegerField(
         choices=GENDER,
-        max_length=1,
         default=3,
     )
     job = models.CharField(

@@ -20,7 +20,7 @@ class Migration(SchemaMigration):
     models = {
         u'account.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
-            'gender': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '3', 'max_length': '1'}),
+            'gender': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '3'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'job': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'mugshot': ('django.db.models.fields.files.ImageField', [], {'max_length': '100', 'blank': 'True'}),
