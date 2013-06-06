@@ -11,3 +11,5 @@ easy-thumbnails
 celery-with-redis
 gunicorn
 django-endless-pagination
+whoosh
+django-haystack

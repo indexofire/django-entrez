@@ -57,6 +57,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'haystack',
     'entrez',
     'south',
     'djcelery',
@@ -92,6 +93,13 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     #"social_auth.context_processors.social_auth_by_type_backends",
     #"social_auth.context_processors.social_auth_login_redirect",
 )
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
 
 LOGGING = {
     'version': 1,

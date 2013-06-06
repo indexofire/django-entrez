@@ -18,7 +18,7 @@ class EntryTermManager(models.Manager):
         return (get_current_date() - timedelta(days=self.model._meta.search_period))
 
     def get_fetch_terms(self):
-        return self.get_query_set().filter(lastedit_date=self.interval)
+        return self.get_query_set().filter(lastedit_date=self.interval, status=1)
 
 
 class EntrezEntryQuerySet(QuerySet):

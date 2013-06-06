@@ -12,14 +12,28 @@ from entrez.utils import convert_maxdate, convert_mindate
 
 
 class EntrezTerm(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
-    term = models.CharField(max_length=512)
+    STATUS = (
+        (1, _("active")),
+        (2, _("inactive")),
+    )
+    name = models.CharField(
+        max_length=100,
+        help_text=_("Give a name, like a short description, to remember it"),
+    )
+    #slug = models.SlugField(unique=True)
+    term = models.TextField(
+        help_text=_("""Build your search keyword which is the same as
+            search in NCBI, condition is allowed."""),
+    )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='term_owner')
     period = models.PositiveSmallIntegerField(choices=ENTREZ_SEARCH_PERIOD, default=7)
     db = models.CharField(choices=ENTREZ_DATABASE_CHOICES, max_length=30, default='pubmed')
     creation_date = models.DateField(blank=True, null=False)
     lastedit_date = models.DateField(blank=True, null=False)
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS,
+        default=1,
+    )
 
     class Meta:
         ordering = ['-creation_date']
@@ -29,7 +43,8 @@ class EntrezTerm(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('entrez-term-list', (), {'slug': self.slug})
+        #return ('entrez-term-list', (), {'slug': self.slug})
+        return ('entrez-term-list', (), {'pk': self.pk})
 
     @property
     def get_unread_entry_count(self):
