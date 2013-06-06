@@ -68,6 +68,17 @@ def add_term(request):
 
 
 @csrf_exempt
+def remove_term(request):
+    if request.method == 'POST':
+        if form.is_valid():
+            term = get_object_or_404(EntrezTerm, pk=request.POST.get('term_id'))
+            term.status = False
+            term.save()
+
+    return HttpResponse()
+
+
+@csrf_exempt
 def mark_as_read(request):
     if request.method == "POST":
         entry = get_object_or_404(EntrezEntry, pk=request.POST.get('feed_item_id'))
