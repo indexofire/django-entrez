@@ -26,10 +26,28 @@ class UserProfile(UserenaBaseProfile):
         choices=GENDER,
         default=3,
     )
+    age = models.IntegerField(
+        blank=True,
+        null=True,
+    )
     job = models.CharField(
         max_length=255,
         blank=True,
         null=False,
+    )
+    location = models.CharField(
+        max_length=255,
+        blank=True,
+        null=False,
+        default='',
+    )
+    website = models.CharField(
+        max_length=255,
+        blank=True,
+        null=False,
+    )
+    about_me = models.TextField(
+        blank=True,
     )
 
     def __unicode__(self):

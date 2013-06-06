@@ -8,33 +8,20 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Adding model 'UserProfile'
-        db.create_table(u'account_userprofile', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('mugshot', self.gf('django.db.models.fields.files.ImageField')(max_length=100, blank=True)),
-            ('privacy', self.gf('django.db.models.fields.CharField')(default='registered', max_length=15)),
-            ('user', self.gf('django.db.models.fields.related.OneToOneField')(related_name='user_profile', unique=True, to=orm['auth.User'])),
-            ('nickname', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('gender', self.gf('django.db.models.fields.PositiveSmallIntegerField')(default=3)),
-            ('age', self.gf('django.db.models.fields.IntegerField')(blank=True)),
-            ('job', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('location', self.gf('django.db.models.fields.CharField')(default='', max_length=255, blank=True)),
-            ('website', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('about_me', self.gf('django.db.models.fields.TextField')(blank=True)),
-        ))
-        db.send_create_signal(u'account', ['UserProfile'])
 
+        # Changing field 'UserProfile.age'
+        db.alter_column(u'account_userprofile', 'age', self.gf('django.db.models.fields.IntegerField')(null=True))
 
     def backwards(self, orm):
-        # Deleting model 'UserProfile'
-        db.delete_table(u'account_userprofile')
 
+        # Changing field 'UserProfile.age'
+        db.alter_column(u'account_userprofile', 'age', self.gf('django.db.models.fields.IntegerField')(default=0))
 
     models = {
         u'account.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'about_me': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            'age': ('django.db.models.fields.IntegerField', [], {'blank': 'True'}),
+            'age': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'gender': ('django.db.models.fields.PositiveSmallIntegerField', [], {'default': '3'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'job': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
