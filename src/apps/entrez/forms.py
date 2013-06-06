@@ -60,4 +60,4 @@ class BootstrapForm(object):
 class AddTermForm(forms.ModelForm, BootstrapForm):
     class Meta:
         model = EntrezTerm
-        exclude = ('owner', 'creation_date', 'lastedit_date')
+        exclude = ('owner', 'creation_date', 'lastedit_date', 'status')

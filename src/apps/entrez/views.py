@@ -30,10 +30,10 @@ def index(request):
 
 
 @login_required()
-def term_list(request, slug):
+def term_list(request, pk):
     tp = 'entrez/entrez_term_list.html'
     # todo: permission to check other user's term
-    term = EntrezTerm.objects.get(slug=slug)
+    term = EntrezTerm.objects.get(pk=pk)
     objects = EntrezEntry.objects.filter(term=term).select_related()
     terms = EntrezTerm.objects.filter(owner=request.user).select_related()
     form = AddTermForm()
@@ -54,7 +54,7 @@ def add_term(request):
         if form.is_valid():
             term = EntrezTerm.objects.create(
                 name=form.cleaned_data["name"],
-                slug=form.cleaned_data["slug"],
+                #slug=form.cleaned_data["slug"],
                 db=form.cleaned_data["db"],
                 period=form.cleaned_data["period"],
                 owner=request.user,
