@@ -128,7 +128,7 @@ LOGGING = {
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'account.UserProfile'
 USERENA_MUGSHOT_GRAVATAR = True
-USERENA_SIGNIN_REDIRECT_URL = '/account/%(username)s/'
+USERENA_SIGNIN_REDIRECT_URL = '/account/'
 
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
