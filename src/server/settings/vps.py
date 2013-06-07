@@ -3,7 +3,7 @@ import os
 from .base import *
 
 
-DEBUG = os.environ['DEBUG']
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 SECRET_KEY = os.environ['SECRET_KEY']
 BROKER_URL = os.environ['BROKER_URL']
