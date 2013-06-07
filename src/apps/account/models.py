@@ -53,7 +53,7 @@ class UserProfile(UserenaBaseProfile):
     def __unicode__(self):
         return self.user.username
 
-    def save(self):
-        super(UserProfile, self).save()
+    def save(self, *args, **kwargs):
         if self.nickname is None:
             self.nickname = self.user.username
+        super(UserProfile, self).save(*args, **kwargs)
