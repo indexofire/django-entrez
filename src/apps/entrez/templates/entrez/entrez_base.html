@@ -13,14 +13,21 @@
     <ul class="nav nav-list bs-docs-sidenav">
       {% if terms %}
       <li{% if not current_term.name %} class="active"{% endif %}>
-        <a href="/entrez/">{% trans "All terms" %}</a>
+        <a href="{% url 'entrez-index' %}">{% trans "All terms" %}</a>
       </li>
       {% for term in terms %}
       <li{% if current_term.name == term.name %} class="active"{% endif %}>
         <a href="{{ term.get_absolute_url }}">
-          <i class="icon-chevron-right"></i>
           <span class="pop-term" data-toggle="tooltip" data-placement="right" data-original-title="{{ term.db }}">{{ term.name }}</span>
         </a>
+        <div class="btn-group pull-right toolbar">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-chevron-right"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">{% trans "Remove term" %}</a></li>
+            <li class="divider"></li>
+            <li><a href="#">{% trans "Change term settings" %}</a></li>
+          </ul>
+        </div>
       </li>
       {% endfor %}
       {% else %}

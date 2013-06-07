@@ -1,53 +1,69 @@
 #content-main {
-  margin-top: 60px;
+    margin-top: 60px;
 }
 
 .bs-docs-sidenav {
-  padding: 0;
-  background-color: #fff;
-  margin-bottom: 20px;
+    padding: 0;
+    background-color: #fff;
+    margin-bottom: 20px;
 }
 .bs-docs-sidenav > li > a {
-  display: block;
-  width: 190px \9;
-  margin: 0 0 -1px;
-  padding: 8px 14px !important;
-  border: 1px solid #e5e5e5;
+    display: block;
+    width: 190px \9;
+    margin: 0 0 -1px;
+    padding: 8px 14px !important;
+    border: 1px solid #e5e5e5;
 }
 .bs-docs-sidenav > .active {
-  border-left: 3px solid #DD4B39;
+    border-left: 3px solid #DD4B39;
 }
 .bs-docs-sidenav > .active > a {
-  position: relative;
-  z-index: 2;
-  padding: 8px 14px 8px 12px !important;
-  /* text-shadow: 0 1px 0 rgba(0,0,0,.15); */
-  border-left: 0 !important;
+    position: relative;
+    z-index: 2;
+    padding: 8px 14px 8px 12px !important;
+    /* text-shadow: 0 1px 0 rgba(0,0,0,.15); */
+    border-left: 0 !important;
 }
+.nav-list > .active {
+    background-color: #F6F6F6;
+}
+.nav-list > .active > a:hover {
+    background-color: transparent;
+}
+
 /* Chevrons */
 .bs-docs-sidenav .icon-chevron-right {
-  float: right;
-  margin-top: 2px;
-  margin-right: -6px;
-  opacity: .25;
+    float: right;
+    margin-top: 2px;
+    margin-right: -6px;
+    opacity: .25;
+    padding: 5px 0 5px 5px;
 }
 .bs-docs-sidenav > li > a:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 .bs-docs-sidenav a:hover .icon-chevron-right {
-  opacity: .5;
+    opacity: .5;
 }
 .bs-docs-sidenav .active .icon-chevron-right,
 .bs-docs-sidenav .active a:hover .icon-chevron-right {
-  background-image: url(../img/glyphicons-halflings.png) !important;
+    background-image: url(../img/glyphicons-halflings.png) !important;
 }
-
+.bs-docs-sidenav .toolbar {
+    margin: -28px 10px 0 0;
+    z-index: 5;
+}
+.bs-docs-sidenav .dropdown-menu {
+    left: 22px;
+    top: -10px;
+    background: #FFF;
+}
 .entry-accordion {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 .entry-accordion-group {
-  border-bottom: 1px solid #EEE;
-  padding: 8px;
+    border-bottom: 1px solid #EEE;
+    padding: 8px;
 }
 .entry-accordion-heading .label {
   margin-right: 8px;
