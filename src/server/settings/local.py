@@ -14,6 +14,8 @@ DATABASES = {
 INSTALLED_APPS += (
     'disqus',
     'debug_toolbar',
+    'room',
+    'favor',
 )
 
 MIDDLEWARE_CLASSES += (
