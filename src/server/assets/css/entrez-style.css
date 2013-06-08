@@ -57,6 +57,10 @@
     left: 22px;
     top: -10px;
     background: #FFF;
+    padding: 5px 0;
+}
+.bs-docs-sidenav .dropdown-menu .divider{
+    margin: 5px 0;
 }
 .entry-accordion {
     margin-bottom: 0px;
@@ -66,88 +70,86 @@
     padding: 8px;
 }
 .entry-accordion-heading .label {
-  margin-right: 8px;
-}
-.entry-accordion-body {
-
+    margin-right: 8px;
 }
 .entry-accordion-inner {
-  padding: 9px 15px;
+    padding: 9px 15px;
 }
 .entry-accordion-toggle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-  cursor: pointer;
-  color: #111;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: pointer;
+    color: #111;
 }
 .entry-accordion-toggle:hover {
-  text-decoration: none;
+    text-decoration: none;
 }
+
 .pages {
-  border-top: 1px solid #EEE;
+    border-top: 1px solid #EEE;
 }
 .pagination {
-  display: inline-block;
-  margin: 10px 10px 5px 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: inline-block;
+    margin: 10px 10px 5px 10px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 .pagination .endless_page_link {
-  line-height: 20px;
-  text-align: -webkit-match-parent;
-  float: left;
-  padding: 4px 12px;
-  line-height: 20px;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-left-width: 0;
+    line-height: 20px;
+    text-align: -webkit-match-parent;
+    float: left;
+    padding: 4px 12px;
+    line-height: 20px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left-width: 0;
 }
 .pagination .endless_page_link:first-child {
-  border-left-width: 1px;
+    border-left-width: 1px;
 }
 .pagination .endless_page_link:hover {
-  background-color: #F3F3F3;
+    background-color: #F3F3F3;
 }
 .pagination .endless_page_current {
-  float: left;
-  padding: 4px 12px;
-  line-height: 20px;
-  text-decoration: none;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-left-width: 0;
+    float: left;
+    padding: 4px 12px;
+    line-height: 20px;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-left-width: 0;
 }
 .pagination .endless_page_current:first-child {
-  border-left-width: 1px;
+    border-left-width: 1px;
 }
 
 .unread {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .modal-title {
-  margin: 0 0 20px 0;
-  background: #F5F5F5;
-  border-bottom: 1px solid #EEE;
+    margin: 0 0 20px 0;
+    background: #F5F5F5;
+    border-bottom: 1px solid #EEE;
 }
-.modal-title h3#myModalLabel {
-  margin: 0;
-  padding-left: 20px;
+#myModalLabel {
+    margin: 0;
+    padding-left: 20px;
 }
 #AddTermModal .form-horizontal {
-  margin: 0;
+    margin: 0;
 }
 #AddTermModal .control-group {
-  margin: 0;
+    margin: 0;
 }
 #AddTermModal .form-actions {
-  margin: 0;
-  background: #FFF;
-  border-top: 0;
+    margin: 0;
+    background: #FFF;
+    border-top: 0;
 }

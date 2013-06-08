@@ -14,13 +14,14 @@
 
 ### 3. Configure in the VPS
 
-1. edit your virtualenv environment via `activate` file in the bin folder of virtualenv. put codes like this
-
-    export SERVER='vps'
-    export EMAIL_ADDRESS='your@domain.com'
-    ...
-
+1. edit your virtualenv environment via `activate` file in the bin folder of virtualenv. put codes like `export SERVER='vps'` etc.
 2. ./manage.py syncdb
 3. ./manage.py migrate
-4. ./manage.py run_gunicorn
-5. check your site in the browser
+4. ./manage.py run_gunicorn &
+5. ./manage.py celeryd -B &
+
+### 4. Settings in admin
+
+1. add term in admin.
+2. add crontab and peridictask in djcelery. remember put like `{'period': n}` (n is the day setting in your term)in your Keyword arguments.
+3. check your site in the browser and wait until the worker finish your NCBI tracing.

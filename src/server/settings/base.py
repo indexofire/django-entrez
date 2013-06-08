@@ -144,4 +144,4 @@ AUTHENTICATION_BACKENDS = (
 
 LOGIN_URL = '/account/signin/'
 LOGOUT_URL = '/account/signout/'
-LOGIN_REDIRECT_URL = '/account/%(username)s/'
+LOGIN_REDIRECT_URL = '/account/'

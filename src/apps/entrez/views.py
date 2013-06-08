@@ -46,6 +46,20 @@ def term_list(request, pk):
     return render_to_response(tp, ct, context_instance=RequestContext(request))
 
 
+@login_required()
+def entry_detail(request, pk):
+    tp = 'entrez/entrez_entry_detail.html'
+    terms = EntrezTerm.objects.filter(owner=request.user).select_related()
+    entry = EntrezEntry.objects.get(pk=pk)
+    if entry.owner == request.user:
+        ct = {
+            "entry": entry,
+            "terms": terms,
+        }
+        return render_to_response(tp, ct, context_instance=RequestContext(request))
+    else:
+        return HttpResponse
+
 @csrf_exempt
 def add_term(request):
     form_class = AddTermForm

@@ -15,7 +15,8 @@
         <div class="toolbar">
           <a href="{{ obj.real_url }}" class="btn btn-info pull-right" target="blank">{% trans "NCBI Link" %}</a>
           <!--<a href="#" class="btn favIt" data="{{ obj.id }}">Fav it</a>-->
-          <a href="#" class="btn mark-unread" data="{{ obj.id }}">Read it</a>
+          <a href="#" class="btn mark-unread" data="{{ obj.id }}">Mark read it</a>
+          <a href="{% url 'entrez-entry-detail' obj.id %}" class="btn">{% trans "Read More" %}</a>
         </div>
       </div>
     </div>

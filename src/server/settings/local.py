@@ -12,6 +12,7 @@ DATABASES = {
 }
 
 INSTALLED_APPS += (
+    'disqus',
     'debug_toolbar',
 )
 
@@ -29,3 +30,4 @@ DEBUG_TOOLBAR_CONFIG = {
 
 SECRET_KEY = '007'
 #BROKER_URL = 'redis://localhost:6379/0'
+DISQUS_WEBSITE_SHORTNAME = 'djentrez'

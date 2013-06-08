@@ -15,6 +15,7 @@ def fetch_entry(**kwargs):
         fetch_queryset(queryset)
 '''
 
+
 @task()
 def entrez_task(**kwargs):
     """
@@ -22,7 +23,8 @@ def entrez_task(**kwargs):
     argument in perodictasks options in django admin.
     """
     terms = EntrezTerm.objects.filter(period=kwargs["period"],
-                                      lastedit_date__lt=get_current_date()).select_related()
+                                      lastedit_date__lt=get_current_date(),
+                                      status=1).select_related()
 
     for term in terms:
         if term is None:
