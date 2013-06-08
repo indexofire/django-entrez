@@ -67,6 +67,7 @@ INSTALLED_APPS = (
     'account',
     'social_auth',
     'endless_pagination',
+    'favor',
 )
 
 MIDDLEWARE_CLASSES = (
