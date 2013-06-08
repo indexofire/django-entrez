@@ -1,3 +1,0 @@
-{{ object.content }}
-{{ object.authors }}
-{{ object.magzine }}

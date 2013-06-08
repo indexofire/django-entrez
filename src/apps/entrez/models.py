@@ -228,6 +228,6 @@ class EntrezEntry(models.Model):
     def real_url(self):
         return mark_safe("http://www.ncbi.nlm.nih.gov/%s/%s/" % (self.db, self.eid))
 
-    def save(self):
-        self.content_html = self.content.replace('\n', '<br>')
-        super(EntrezEntry, self).save()
+    #def save(self):
+    #    self.content_html = self.content.replace('\n', '<br>')
+    #    super(EntrezEntry, self).save()
