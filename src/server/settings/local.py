@@ -29,5 +29,5 @@ DEBUG_TOOLBAR_CONFIG = {
 }
 
 SECRET_KEY = '007'
-#BROKER_URL = 'redis://localhost:6379/0'
+BROKER_URL = 'amqp://guest:guest@localhost:5672//'
 DISQUS_WEBSITE_SHORTNAME = 'djentrez'
