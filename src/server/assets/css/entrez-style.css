@@ -99,7 +99,8 @@
     -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
-.pagination .endless_page_link {
+.pagination .endless_page_link,
+.pagination .endless_separator {
     line-height: 20px;
     text-align: -webkit-match-parent;
     float: left;
