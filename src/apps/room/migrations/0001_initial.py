@@ -13,22 +13,25 @@ class Migration(SchemaMigration):
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=255)),
             ('desc', self.gf('django.db.models.fields.TextField')()),
+            ('creator', self.gf('django.db.models.fields.related.ForeignKey')(related_name='creator', to=orm['auth.User'])),
         ))
         db.send_create_signal(u'room', ['Room'])
 
-        # Adding model 'RoomMember'
-        db.create_table(u'room_roommember', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('room', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['room.Room'])),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+        # Adding M2M table for field members on 'Room'
+        m2m_table_name = db.shorten_name(u'room_room_members')
+        db.create_table(m2m_table_name, (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('room', models.ForeignKey(orm[u'room.room'], null=False)),
+            ('user', models.ForeignKey(orm[u'auth.user'], null=False))
         ))
-        db.send_create_signal(u'room', ['RoomMember'])
+        db.create_unique(m2m_table_name, ['room_id', 'user_id'])
 
         # Adding model 'RoomEntry'
         db.create_table(u'room_roomentry', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('room', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['room.Room'])),
             ('entry', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['entrez.EntrezEntry'])),
+            ('link_time', self.gf('django.db.models.fields.DateTimeField')()),
         ))
         db.send_create_signal(u'room', ['RoomEntry'])
 
@@ -37,8 +40,8 @@ class Migration(SchemaMigration):
         # Deleting model 'Room'
         db.delete_table(u'room_room')
 
-        # Deleting model 'RoomMember'
-        db.delete_table(u'room_roommember')
+        # Removing M2M table for field members on 'Room'
+        db.delete_table(db.shorten_name(u'room_room_members'))
 
         # Deleting model 'RoomEntry'
         db.delete_table(u'room_roomentry')
@@ -82,7 +85,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         u'entrez.entrezentry': {
-            'Meta': {'ordering': "['-creation_time']", 'object_name': 'EntrezEntry'},
+            'Meta': {'ordering': "['creation_time']", 'object_name': 'EntrezEntry'},
             'abstract': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
             'authors': ('django.db.models.fields.CharField', [], {'max_length': '512', 'blank': 'True'}),
             'content': ('django.db.models.fields.TextField', [], {}),
@@ -99,7 +102,7 @@ class Migration(SchemaMigration):
             'title': ('django.db.models.fields.CharField', [], {'max_length': '512'})
         },
         u'entrez.entrezterm': {
-            'Meta': {'ordering': "['-creation_date']", 'object_name': 'EntrezTerm'},
+            'Meta': {'ordering': "['creation_date']", 'object_name': 'EntrezTerm'},
             'creation_date': ('django.db.models.fields.DateField', [], {'blank': 'True'}),
             'db': ('django.db.models.fields.CharField', [], {'default': "'pubmed'", 'max_length': '30'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -112,21 +115,18 @@ class Migration(SchemaMigration):
         },
         u'room.room': {
             'Meta': {'object_name': 'Room'},
+            'creator': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'creator'", 'to': u"orm['auth.User']"}),
             'desc': ('django.db.models.fields.TextField', [], {}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'members': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'member'", 'symmetrical': 'False', 'to': u"orm['auth.User']"}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255'})
         },
         u'room.roomentry': {
             'Meta': {'object_name': 'RoomEntry'},
             'entry': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['entrez.EntrezEntry']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'link_time': ('django.db.models.fields.DateTimeField', [], {}),
             'room': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['room.Room']"})
-        },
-        u'room.roommember': {
-            'Meta': {'object_name': 'RoomMember'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'room': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['room.Room']"}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']"})
         }
     }
 

@@ -36,7 +36,7 @@ class EntrezTerm(models.Model):
     )
 
     class Meta:
-        ordering = ['-creation_date']
+        ordering = ['creation_date']
 
     def __unicode__(self):
         return self.name
@@ -106,6 +106,11 @@ class EntrezTerm(models.Model):
             fetch_options = self.fetch_options()
             spliter = '\n'
             func = self.epigenomics
+        elif self.db == 'nuccore':
+            search_options = self.search_options()
+            fetch_options = self.fetch_options(rettype='acc')
+            spliter = '\n'
+            func = self.nuccore
         else:
             search_options = self.search_options()
             fetch_options = self.fetch_options()
@@ -172,15 +177,20 @@ class EntrezTerm(models.Model):
 
         eid = e[-1][start:end]
 
-        return EntrezEntry(content=entry, eid=eid, abstract=abstract, term=self,
-                           db=self.db, owner=self.owner, title=title, authors=authors,
-                           magzine=magzine)
+        html = ''
+        es = entry.split('\n\n')
+        for e in es:
+            html += '<p>' + e + '</p>'
+
+        return EntrezEntry(content=entry, content_html=html, eid=eid, abstract=abstract,
+                           term=self, db=self.db, owner=self.owner, title=title,
+                           authors=authors, magzine=magzine)
 
     def epigenomics(self, entry):
         """Create epigenomics type entry"""
         entry = entry[entry.find(' ')+1:]
 
-        return EntrezEntry(content=entry, eid=entry, term=self,
+        return EntrezEntry(content=entry, content_html=entry, eid=entry, term=self,
                            db=self.db, owner=self.owner, title=entry)
 
     def gene(self, entry):
@@ -190,8 +200,14 @@ class EntrezTerm(models.Model):
         eid = e[-1][e[-1].find(' ')+1:]
         title = e[0]
 
-        return EntrezEntry(content=entry, eid=eid, term=self,
+        return EntrezEntry(content=entry, eid=eid, term=self, content_html=entry,
                            db=self.db, owner=self.owner, title=title)
+
+    def nuccore(self, entry):
+        """Create nuccore type entry"""
+
+        return EntrezEntry(content=entry, content_html=entry, term=self, eid=entry,
+                           title=entry, owner=self.owner, db=self.db)
 
 
 class EntrezEntry(models.Model):
@@ -215,7 +231,8 @@ class EntrezEntry(models.Model):
     objects = EntrezEntryManager()
 
     class Meta:
-        ordering = ['-creation_time']
+        ordering = ['creation_time']
+        #ordering = []
 
     def __unicode__(self):
         return self.title
