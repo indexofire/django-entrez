@@ -81,7 +81,7 @@ class EntrezTerm(models.Model):
 
         if not settings.DEBUG and settings.EMAIL_HOST is not None:
             send_mail('Your Search for %s is finished' % self.term,
-                      mark_safe(_('''There are %n numbers of entries founded. visit
+                      mark_safe(_('''There are %d numbers of entries founded. visit
                                   <a href="#">here</a> to see the result''' % len(entries))),
                       settings.EMAIL_HOST_USER, [self.owner.email], fail_silently=False)
 
