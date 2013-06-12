@@ -91,7 +91,8 @@ class EntrezTerm(models.Model):
         `settings.ENTREZ_DATABASE_CHOICES` also.
         """
         # todo: using lambda is better ?
-        if self.db == 'pubmed':
+        if self.db in settings.ENTREZ_OPTION_TYPE['s1']:
+            # pubmed options
             search_options = self.search_options(datetype='edat')
             fetch_options = self.fetch_options(rettype='abstract')
             spliter = '\n\n\n'

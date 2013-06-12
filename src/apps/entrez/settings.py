@@ -36,13 +36,20 @@ ENTREZ_DEFAULT_CHOICES = (
     #("pcassay", ),
     #("pccompound", ),
     #("pcsubstance", ),
-    #("snp", ),
+    ("snp", "SNP"),
     #("taxonomy", ),
     #("toolkit", ),
     #("unigene", ),
     #("unists", ),
 )
 ENTREZ_DATABASE_CHOICES = getattr(settings, 'ENTREZ_DATABASE_CHOICES', ENTREZ_DEFAULT_CHOICES)
+
+ENTREZ_OPTION_TYPE = {
+    's1': ["pubmed", ],
+    's2': ["nuccore", ],
+    's3': ["gene", ],
+    's4': ["epigenomics", "snp"],
+}
 
 ENTREZ_DEFAULT_PERIOD = (
     (1, _('Everyday')),
