@@ -18,12 +18,11 @@ class EntrezTerm(models.Model):
     )
     name = models.CharField(
         max_length=100,
-        help_text=_("Give a name, like a short description, to remember it"),
+        help_text=_("Give a unique name to remember"),
     )
     #slug = models.SlugField(unique=True)
     term = models.TextField(
-        help_text=_("""Build your search keyword which is the same as
-            search in NCBI, condition is allowed."""),
+        help_text=_("Keywords to trace as the rules in NCBI."),
     )
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='term_owner')
     period = models.PositiveSmallIntegerField(choices=ENTREZ_SEARCH_PERIOD, default=7)

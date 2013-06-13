@@ -26,12 +26,10 @@ def get_options(term):
             'maxdate': get_maxdate(),
             'usehistory': 'y',
             'retmode': 'text',
-            'rettype': '',
         },
         'fetch': {
             'db': term.db,
             'retmode': 'text',
-            'rettype': '',
         },
         'splitter': '\n',
         'function': 'default',
@@ -39,30 +37,19 @@ def get_options(term):
 
     if term.db in ENTREZ_OPTION_TYPE["s1"]:
         # database pubmed
-        return options.update({
-            'search': {
-                'datetype': 'edat',
-            },
-            'fetch': {
-                'retype': 'abstract',
-            },
-            'splitter': '\n\n\n',
-            'function': 'pubmed',
-        })
+        options["search"].update({'datetype': 'edat'})
+        options["fetch"].update({'rettype': 'abstract'})
+        options.update({'splitter': '\n\n\n', 'function': pubmed})
+        return options
     elif term.db in ENTREZ_OPTION_TYPE["s2"]:
         # database nuccore
-        return options.update({
-            'fetch': {
-                'rettype': 'acc',
-            },
-            'function': 'nuccore',
-        })
+        options["fetch"].update({'rettype': 'acc'})
+        options.update({'function': nuccore})
+        return options
     elif term.db in ENTREZ_OPTION_TYPE["s3"]:
         # database gene
-        return options.update({
-            'splitter': '\n\n',
-            'function': 'gene',
-        })
+        options.update({'splitter': '\n\n', 'function': gene})
+        return options
     else:
         return options
 
