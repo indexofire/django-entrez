@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 import entrez
 from entrez.settings import *
 from entrez.managers import EntrezEntryManager
-from entrez.utils import convert_maxdate, convert_mindate
+from entrez.utils import get_maxdate, get_mindate
 
 
 class EntrezTerm(models.Model):
@@ -127,8 +127,8 @@ class EntrezTerm(models.Model):
             'term': self.term,
             'retmax': ENTREZ_SEARCH_MAX,
             'datetype': 'pdat',
-            'mindate': convert_mindate(self.lastedit_date),
-            'maxdate': convert_maxdate(),
+            'mindate': get_mindate(self.lastedit_date),
+            'maxdate': get_maxdate(),
             'usehistory': 'y',
         }
 
