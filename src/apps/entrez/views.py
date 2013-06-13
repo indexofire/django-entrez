@@ -7,7 +7,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from entrez.models import EntrezEntry, EntrezTerm
 from entrez.forms import AddTermForm
-from entrez.utils import get_current_date
+from entrez.utils import get_date
 
 
 def get_user_all_terms(request):
@@ -73,8 +73,8 @@ def add_term(request):
                 period=form.cleaned_data["period"],
                 owner=request.user,
                 term=form.cleaned_data["term"],
-                creation_date=get_current_date(),
-                lastedit_date=get_current_date(),
+                creation_date=get_date(),
+                lastedit_date=get_date(),
             )
             term.save()
 

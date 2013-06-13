@@ -1,0 +1,22 @@
+{% extends "room/room_base.html" %}
+{% load i18n %}
+
+{% block room-content %}
+{% for entry in entries %}
+<div class="entry" style="margin-bottom:20px">
+  <span><img src="{{ entry.entry.owner.get_profile.get_mugshot_url }}"></span>
+  <h3>{{ entry.entry.title }}</h3>
+  <div>{{ entry.entry.content_html|safe }}</div>
+  <span><a href="{% url 'entrez-entry-detail' entry.entry.id %}" class="btn btn-primary">{% trans "Read More" %}</a></span>
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block room-sidebar %}
+<ul>
+{% for member in members %}
+  <li><a href="{% url 'userena_profile_detail' member.username %}">{{ member.username }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
+

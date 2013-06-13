@@ -19,5 +19,8 @@ class RoomEntry(models.Model):
     entry = models.ForeignKey(EntrezEntry)
     link_time = models.DateTimeField()
 
+    class Meta:
+        ordering=['-link_time']
+
     def __unicode__(self):
-        return self.id
+        return self.entry.title

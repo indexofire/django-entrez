@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from celery import task
-from django.core.exceptions import DoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from entrez.utils import get_date
 from entrez.helper import trace
 from entrez.models import EntrezTerm
@@ -35,5 +35,5 @@ def entrez_task(**kwargs):
             #term.update_entry()
             trace(term)
             terms.update(lastedit_date=get_date())
-    except DoesNotExist:
+    except ObjectDoesNotExist:
         return

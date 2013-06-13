@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<div class="row">
+  <div class="span9">{% block room-content %}{% endblock %}</div>
+  <div class="span3">{% block room-sidebar %}{% endblock %}</div>
+</div>
+{% endblock content %}

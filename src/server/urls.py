@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^favicon\.ico/$', RedirectView.as_view(url='%simg/favicon.ico' % settings.STATIC_URL)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^entrez/', include('entrez.urls')),
+    url(r'^room/', include('room.urls')),
     url(r'^account/', include('userena.urls'), name='account'),
     url(r'^social/', include('social_auth.urls')),
 )
