@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from favor.settings import *
@@ -21,10 +22,24 @@ def ajax_add_favorite(request):
 
         #if not create it
         favorite = Favorite.objects.create_favorite(obj, request.user)
-        print favorite
         return HttpResponse(status=200)
     else:
-        print 'false'
+        return HttpResponse(status=405)
+
+
+@login_required
+def ajax_remove_favorite(request):
+    """ Remove favourite returns Http codes"""
+    if request.method == "POST":
+        object_id = request.POST.get("object_id")
+        content_type = get_object_or_404(ContentType,
+                                         pk=request.POST.get("content_type_id"))
+        favorite = get_object_or_404(Favorite, object_id=object_id,
+                                     content_type=content_type,
+                                     user=request.user)
+        favorite.delete()
+        return HttpResponse(status=200)
+    else:
         return HttpResponse(status=405)
 
 
@@ -56,20 +71,7 @@ def ajax_add_favorite(request):
         return HttpResponse(status=405)
 
 
-@login_required
-def ajax_remove_favorite(request):
-    """ Adds favourite returns Http codes"""
-    if request.method == "POST":
-        object_id = request.POST.get("object_id")
-        content_type = get_object_or_404(ContentType,
-                                         pk=request.POST.get("content_type_id"))
-        favorite = get_object_or_404(Favorite, object_id=object_id,
-                                     content_type=content_type,
-                                     user=request.user)
-        favorite.delete()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=405)
+
 
 
 @login_required
